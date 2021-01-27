@@ -49,7 +49,8 @@ sudo yum install -y azure-cli
 
     ### Install MOFED Driver (Use v4.9 with Azure GPU VMs (except NDv2 or NDv4) as they use ConnectX3)
     #MLNX_OFED_DOWNLOAD_URL=http://content.mellanox.com/ofed/MLNX_OFED-5.0-2.1.8.0/MLNX_OFED_LINUX-5.0-2.1.8.0-rhel7.9-x86_64.tgz
-    MLNX_OFED_DOWNLOAD_URL=http://content.mellanox.com/ofed/MLNX_OFED-4.9-2.2.4.0/MLNX_OFED_LINUX-4.9-2.2.4.0-rhel7.9-x86_64.tgz
+    VERSION=( $(grep -oE '[0-9]+\.[0-9]+' /etc/centos-release) )
+    MLNX_OFED_DOWNLOAD_URL=http://content.mellanox.com/ofed/MLNX_OFED-4.9-2.2.4.0/MLNX_OFED_LINUX-4.9-2.2.4.0-rhel${VERSION}-x86_64.tgz
     TARBALL=$(basename ${MLNX_OFED_DOWNLOAD_URL})
     MOFED_FOLDER=$(basename ${MLNX_OFED_DOWNLOAD_URL} .tgz)
     cd /tmp && wget $MLNX_OFED_DOWNLOAD_URL
